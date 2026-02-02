@@ -70,4 +70,11 @@ public class QuantityMeasurementAppTest {
         assertTrue(inches.equals(inches));
     }
 
+    @Test
+    public void testFeetInchesComparison() {
+        Length feet = new Length(1.0, Length.LengthUnit.FEET);
+        Length inches = new Length(34, Length.LengthUnit.INCHES);
+        assertFalse(feet.equals(inches));
+    }
+
 }
