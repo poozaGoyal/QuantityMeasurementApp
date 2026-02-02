@@ -77,4 +77,35 @@ public class QuantityMeasurementAppTest {
         assertFalse(feet.equals(inches));
     }
 
+    @Test
+    public void yardsEquals36Inches() {
+        assertTrue(QuantityMeasurementApp.demonstrateLengthComparison(1, Length.LengthUnit.YARDS,
+                36, Length.LengthUnit.INCHES));
+    }
+
+    @Test
+    public void centimeterEquals39Points3701Inches() {
+        assertTrue(QuantityMeasurementApp.demonstrateLengthComparison(100, Length.LengthUnit.CENTIMETERS,
+                39.3701, Length.LengthUnit.INCHES));
+    }
+
+    @Test
+    public void threeFeetEqualsOneYard() {
+        assertTrue(QuantityMeasurementApp.demonstrateLengthComparison(3.0, Length.LengthUnit.FEET,
+                1.0, Length.LengthUnit.YARDS));
+    }
+
+    @Test
+    public void differentValuesSameUnitNotEqual() {
+        Length feet1 = new Length(5.0, Length.LengthUnit.FEET);
+        Length feet2 = new Length(6.0, Length.LengthUnit.FEET);
+        assertFalse(feet1.equals(feet2));
+    }
+
+    @Test
+    public void equalsReturnsFalseForNull() {
+        Length feet = new Length(5.0, Length.LengthUnit.FEET);
+        assertFalse(feet.equals(null));
+    }
+
 }
