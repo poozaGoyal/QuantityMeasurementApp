@@ -72,8 +72,20 @@ public class QuantityMeasurementApp {
         System.out.println("inches1 equals inches3: " + inches1.equals("abc")); // false
     }
 
+    public static boolean demonstrateLengthEquality(Length length1, Length length2) {
+        return length1.equals(length2);
+    }
+
+    public static boolean demonstrateLengthComparison(double value1, Length.LengthUnit unit1, double value2, Length.LengthUnit unit2) {
+        Length length1 = new Length(value1, unit1);
+        Length length2 = new Length(value2, unit2);
+        return demonstrateLengthEquality(length1, length2);
+    }
+
     public static void main(String[] args) {
         demonstrateFeetEquality();
         demonstrateInchesEquality();
+        demonstrateLengthComparison(3, Length.LengthUnit.FEET, 1, Length.LengthUnit.YARDS); // true
+        demonstrateLengthComparison(100.0, Length.LengthUnit.CENTIMETERS, 30.3701, Length.LengthUnit.INCHES); // true
     }
 }

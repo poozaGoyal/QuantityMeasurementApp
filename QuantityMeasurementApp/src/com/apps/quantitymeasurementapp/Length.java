@@ -6,7 +6,9 @@ public class Length {
 
     public enum LengthUnit {
         FEET(12.0),
-        INCHES(1.0);
+        INCHES(1.0),
+        YARDS(36.0),
+        CENTIMETERS(0.393701);
 
         private final double conversionFactor;
 
@@ -42,8 +44,13 @@ public class Length {
         Length length1 = new Length(1.0, LengthUnit.FEET);
         Length length2 = new Length(12.0, LengthUnit.INCHES);
         Length length3 = new Length(10.0, LengthUnit.INCHES);
+        Length length4 = new Length(30.48, LengthUnit.CENTIMETERS);
+        Length length5 = new Length(1.0, LengthUnit.YARDS);
 
         System.out.println("Are lengths equal? " + length1.equals(length2));
         System.out.println("Are lengths equal? " + length2.equals(length3));
+        System.out.println("Are lengths equal? " + length1.equals(length4));
+        System.out.println("Are lengths equal? " + length5.equals(length1));
+
     }
 }
