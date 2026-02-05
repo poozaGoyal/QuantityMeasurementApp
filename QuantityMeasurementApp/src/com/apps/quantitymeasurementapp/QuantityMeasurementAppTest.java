@@ -108,4 +108,52 @@ public class QuantityMeasurementAppTest {
         assertFalse(feet.equals(null));
     }
 
+    @Test
+    public void testConversion_FeetToInches() {
+        Length lengthInInches = QuantityMeasurementApp.demonstrateLengthConversion(new Length(1.0, Length.LengthUnit.FEET), Length.LengthUnit.INCHES);
+        Length expectedInches = new Length(12.0, Length.LengthUnit.INCHES);
+        assertTrue(QuantityMeasurementApp.demonstrateLengthEquality(lengthInInches, expectedInches));
+    }
+
+    @Test
+    public void testConversion_CentimetersToInches() {
+        Length lengthInInches = QuantityMeasurementApp.demonstrateLengthConversion(new Length(2.54, Length.LengthUnit.CENTIMETERS), Length.LengthUnit.INCHES);
+        Length expectedInches = new Length(1.0, Length.LengthUnit.INCHES);
+        assertTrue(QuantityMeasurementApp.demonstrateLengthEquality(lengthInInches, expectedInches));
+    }
+
+    @Test
+    public void testConversion_ZeroValues() {
+        Length lengthInInches = QuantityMeasurementApp.demonstrateLengthConversion(new Length(0.0, Length.LengthUnit.FEET), Length.LengthUnit.INCHES);
+        Length expectedInches = new Length(0.0, Length.LengthUnit.INCHES);
+        assertTrue(QuantityMeasurementApp.demonstrateLengthEquality(lengthInInches, expectedInches));
+    }
+
+    @Test
+    public void testConversion_FeetToYards() {
+        Length lengthInYards = QuantityMeasurementApp.demonstrateLengthConversion(new Length(6.0, Length.LengthUnit.FEET), Length.LengthUnit.YARDS);
+        Length expectedYards = new Length(2.0, Length.LengthUnit.YARDS);
+        assertTrue(QuantityMeasurementApp.demonstrateLengthEquality(lengthInYards, expectedYards));
+    }
+    @Test
+    public void testConversion_NegativeValues() {
+        Length lengthInInches = QuantityMeasurementApp.demonstrateLengthConversion(new Length(-1.0, Length.LengthUnit.FEET), Length.LengthUnit.INCHES);
+        Length expectedInches = new Length(-12.0, Length.LengthUnit.INCHES);
+        assertTrue(QuantityMeasurementApp.demonstrateLengthEquality(lengthInInches, expectedInches));
+    }
+
+    @Test
+    public void testConversion_InvalidUnit_Throws() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            QuantityMeasurementApp.demonstrateLengthConversion(new Length(1.0, Length.LengthUnit.FEET), null);
+        });
+    }
+
+    @Test
+    public void testComparison_NanOrInfinite_Throws() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            QuantityMeasurementApp.demonstrateLengthConversion(new Length(Double.NaN, Length.LengthUnit.FEET), Length.LengthUnit.INCHES);
+        });
+
+    }
 }

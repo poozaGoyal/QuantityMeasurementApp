@@ -82,10 +82,22 @@ public class QuantityMeasurementApp {
         return demonstrateLengthEquality(length1, length2);
     }
 
+    public static Length demonstrateLengthConversion(double value1, Length.LengthUnit unit1, Length.LengthUnit unit2) {
+        Length length1 = new Length(value1, unit1);
+        return length1.convertTo(unit2);
+    }
+
+    public static Length demonstrateLengthConversion(Length length, Length.LengthUnit targetUnit) {
+        return length.convertTo(targetUnit);
+    }
+
+
     public static void main(String[] args) {
         demonstrateFeetEquality();
         demonstrateInchesEquality();
         demonstrateLengthComparison(3, Length.LengthUnit.FEET, 1, Length.LengthUnit.YARDS); // true
         demonstrateLengthComparison(100.0, Length.LengthUnit.CENTIMETERS, 30.3701, Length.LengthUnit.INCHES); // true
+        System.out.println(demonstrateLengthConversion(new Length(7, Length.LengthUnit.FEET), Length.LengthUnit.INCHES)); // 12 inches
+        System.out.println(demonstrateLengthConversion(3444, Length.LengthUnit.CENTIMETERS, Length.LengthUnit.FEET));
     }
 }
