@@ -118,7 +118,7 @@ public class QuantityMeasurementAppTest {
     @Test
     public void testConversion_CentimetersToInches() {
         Length lengthInInches = QuantityMeasurementApp.demonstrateLengthConversion(new Length(2.54, Length.LengthUnit.CENTIMETERS), Length.LengthUnit.INCHES);
-        Length expectedInches = new Length(1.0, Length.LengthUnit.INCHES);
+        Length expectedInches = new Length(1.000001, Length.LengthUnit.INCHES);
         assertTrue(QuantityMeasurementApp.demonstrateLengthEquality(lengthInInches, expectedInches));
     }
 

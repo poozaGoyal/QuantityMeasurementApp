@@ -35,6 +35,7 @@ public class Length {
 
     public Length convertTo(LengthUnit targetUnit) {
         final double epsilon = 1e-6;
+        double targetValue;
         if(targetUnit == null || this.unit == null)
             throw new IllegalArgumentException();
         if (this.unit == targetUnit)
@@ -47,19 +48,17 @@ public class Length {
         if (this.convertToBaseUnit() / targetUnit.getConversionFactor() > Double.MAX_VALUE || this.convertToBaseUnit() / targetUnit.getConversionFactor() < -Double.MAX_VALUE
         || this.convertToBaseUnit() / targetUnit.getConversionFactor() < Double.MIN_VALUE && this.convertToBaseUnit() / targetUnit.getConversionFactor() > -Double.MIN_VALUE)
             throw new ArithmeticException("Overflow and Underflow occurred during conversion");
-        if (Math.abs(this.convertToBaseUnit() / targetUnit.getConversionFactor()) < epsilon)
+
+        targetValue = this.convertToBaseUnit() / targetUnit.getConversionFactor();
+        double roundedTargetValue = Math.round(targetValue * 1000000.0) / 1000000.0;
+
+        if (Math.abs(targetValue - roundedTargetValue) < epsilon)
         {
-
+            targetValue = roundedTargetValue;
         }
-        double targetValue = this.convertToBaseUnit() / targetUnit.getConversionFactor();
         Length length = new Length(targetValue, targetUnit);
-        length.value = Double.parseDouble(length.toString());
+        length.value = targetValue;
         return length;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("%.2f", value);
     }
 
     @Override
