@@ -91,6 +91,9 @@ public class QuantityMeasurementApp {
         return length.convertTo(targetUnit);
     }
 
+    public static Length demonstrateLengthAddition(Length length1, Length length2) {
+        return length1.add(length2);
+    }
 
     public static void main(String[] args) {
         demonstrateFeetEquality();
@@ -99,5 +102,8 @@ public class QuantityMeasurementApp {
         demonstrateLengthComparison(100.0, Length.LengthUnit.CENTIMETERS, 30.3701, Length.LengthUnit.INCHES); // true
         System.out.println(demonstrateLengthConversion(new Length(7, Length.LengthUnit.FEET), Length.LengthUnit.INCHES)); // 12 inches
         System.out.println(demonstrateLengthConversion(3444, Length.LengthUnit.CENTIMETERS, Length.LengthUnit.FEET));
+        Length length1 = new Length(2, Length.LengthUnit.FEET);
+        Length length2 = new Length(24, Length.LengthUnit.INCHES);
+        System.out.println(demonstrateLengthAddition(length1, length2)); // 4 feet
     }
 }

@@ -61,11 +61,26 @@ public class Length {
         return length;
     }
 
+    public Length add(Length length) {
+        double sumInInches = this.convertToBaseUnit() + length.convertToBaseUnit();
+        double sumInTargetUnit = convertFromBaseUnitToTargetUnit(sumInInches, this.unit);
+        return new Length(sumInTargetUnit, this.unit);
+    }
+
+    private double convertFromBaseUnitToTargetUnit(double sumInInches, LengthUnit targetUnit) {
+        return sumInInches / targetUnit.getConversionFactor();
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         return this.compare((Length) obj);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%.2f", value);
     }
 
     public static void main(String[] args) {
